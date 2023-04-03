@@ -1,6 +1,7 @@
 package machine
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/DemetriusADS/cplx_algo_prova_i/machine/ports/sensor"
@@ -12,7 +13,7 @@ type Metric struct {
 }
 
 type Machine struct {
-	Metrics []Metric
+	Metrics []*Metric
 	Name    string
 	IsOn    bool
 
@@ -40,7 +41,7 @@ func (m *Machine) genData() {
 		temp := m.TemperatureSensor.Read()
 		vol := m.VolumeSensor.Read()
 
-		m.Metrics = append(m.Metrics, Metric{
+		m.Metrics = append(m.Metrics, &Metric{
 			Temperature: *temp,
 			Volume:      *vol,
 		})
@@ -51,6 +52,21 @@ func (m *Machine) genData() {
 	}
 }
 
-func (m *Machine) Read() []Metric {
+func (m *Machine) Read() []*Metric {
 	return m.Metrics
+}
+
+func (m *Machine) FixTemperature() {
+	fmt.Printf("CALIBRANDO A MAQUINA %s PARA A TEMPERATURA IDEAL\n", m.Name)
+	for _, metric := range m.Read() {
+		// temp = volume * 2.5
+		now := time.Now().Format("2006-01-02 15:04:05")
+		newTemp := metric.Volume.Value * 2.5
+		if newTemp < 100 {
+			newTemp = 100
+		}
+		metric.Temperature.Value = newTemp
+		metric.Temperature.Time = now
+		metric.Volume.Time = now
+	}
 }
