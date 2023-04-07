@@ -26,12 +26,10 @@ func NewMonitor() *Monitor {
 }
 
 func (m *Monitor) Start() {
-	// monitor := [10]*machine.Machine{}
 	var command string
 	for {
 		m.menu()
 		fmt.Scanln(&command)
-		//send command to clear terminal
 		fmt.Print("\033[H\033[2J")
 		switch command {
 		case "1":
@@ -42,7 +40,9 @@ func (m *Monitor) Start() {
 			fmt.Println("Listando as métricas coletadas...")
 			m.listarMetricas()
 			continue
-
+		case "3":
+			fmt.Println("Ordenando as métricas por data (DESC)...")
+			m.ordenarMaquinas()
 		case "4":
 			m.calibrarMaquinas()
 			continue
@@ -84,6 +84,12 @@ func (m *Monitor) listarMetricas() {
 func (m *Monitor) calibrarMaquinas() {
 	for _, maquina := range m.maquinas {
 		maquina.FixTemperature()
+	}
+}
+
+func (m *Monitor) ordenarMaquinas() {
+	for _, maquina := range m.maquinas {
+		maquina.BubbleSortDescending()
 	}
 }
 

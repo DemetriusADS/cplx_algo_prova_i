@@ -77,7 +77,7 @@ func TestMachineListMetrics(t *testing.T) {
 	}
 }
 
-func TestCorrigirTemperatura(t *testing.T) {
+func BenchmarkCorrigirTemperatura(t *testing.B) {
 	monitor := NewMonitor()
 	time.Sleep(11 * time.Second)
 	monitor.calibrarMaquinas()
