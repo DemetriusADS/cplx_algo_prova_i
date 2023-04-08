@@ -43,6 +43,7 @@ func (m *Monitor) Start() {
 		case "3":
 			fmt.Println("Ordenando as métricas por data (DESC)...")
 			m.ordenarMaquinas()
+			fmt.Println("Ordenado com sucesso!")
 		case "4":
 			m.calibrarMaquinas()
 			continue
