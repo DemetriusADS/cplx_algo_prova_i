@@ -62,6 +62,9 @@ func (m *Monitor) menu() {
 	fmt.Println("5 - Sair")
 }
 
+// Complexidade O(N).
+// O algoritmo em questão possui apenas um for, que percorre todas as máquinas e as lista.
+// Como consequência, quanto mais dados houverem (maquinas e métricas coletadas), mais tempo o algoritmo leva para ser executado, de forma linear
 func (m *Monitor) listarMaquinas() {
 	fmt.Printf("%-10s %-15s\n", "Nome", "Está Online?")
 	for _, maquina := range m.maquinas {
@@ -69,6 +72,9 @@ func (m *Monitor) listarMaquinas() {
 	}
 }
 
+// Complexidade O(N^2).
+// O algoritmo em questão possui dois for, um que percorre todas as máquinas e outro que percorre todas as métricas de cada máquina.
+// Como consequência, quanto mais dados houverem (maquinas e métricas coletadas), mais tempo o algoritmo leva para ser executado, de forma exponencial
 func (m *Monitor) listarMetricas() {
 	for _, maquina := range m.maquinas {
 
@@ -81,12 +87,17 @@ func (m *Monitor) listarMetricas() {
 	}
 }
 
+// Complexidade O(N^2).
+// Essa complexidade ocorre pois existe um for, no menu, que executa o comando desejado pelo usuario, e dentro desse for existe um outro for, que percorre todos os sensores da máquina e executa o algoritmo.
+// Como consequência, quanto mais máquinas e mais métricas são coletadas, mais tempo o algoritmo leva para ser executado de forma exponencial
 func (m *Monitor) calibrarMaquinas() {
 	for _, maquina := range m.maquinas {
 		maquina.FixTemperature()
 	}
 }
 
+// Complexidade O(N^3).
+// Essa complexidade ocorre pois existe um for, no menu, para percorrer todas as máquinas. Posteriormente, é executado o algoritmo BubbleSort, que possui complexidade O(N^2).
 func (m *Monitor) ordenarMaquinas() {
 	for _, maquina := range m.maquinas {
 		maquina.BubbleSortDescending()
