@@ -9,13 +9,14 @@
   - https://go.dev/doc/install
 
 ## Instalando os pacotes
-Para instalar os pacotes do projeto, acesse a pasta root do projeto e execute o comando abaixo:
+- Realizar o clone do projeto em questão.
+- Instalar os pacotes do projeto. Para isso, acesse a pasta root do projeto, a partir do seu terminal, e execute o comando abaixo:
 ```sh
 go install
 ```
 
 ## Executando o projeto
-Para executar o projeto, executar o comando abaixo, na pasta root do projeto
+Para executar o projeto, a partir do seu terminal, executar o comando abaixo, na pasta root do projeto
 
 ```sh
 go run cmd/monitor/main.go
