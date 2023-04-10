@@ -21,3 +21,7 @@ Para executar o projeto, a partir do seu terminal, executar o comando abaixo, na
 ```sh
 go run cmd/monitor/main.go
 ```
+
+## Respostas da prova
+Todos os comentários necessários para responder à prova, estão no arquivo:
+``monitor/monitor.go``
